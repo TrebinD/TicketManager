@@ -19,7 +19,7 @@ public class ManagerTicket {
         repository.removeTicket(id);
     }
 
-    public Ticket[] searchBy(String from, String to) {
+    public Ticket[] findAll(String from, String to) {
         Ticket[] result = new Ticket[0];
         for (Ticket product : repository.findAll()) {
             if (matches(product, from) && matches2(product, to)) {

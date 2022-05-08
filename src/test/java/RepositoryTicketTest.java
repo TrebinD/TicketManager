@@ -105,7 +105,7 @@ class RepositoryTicketTest {
         manager.add(ticketMoscow);
 
         Ticket[] actual = {ticketBishkek};
-        Ticket[] expected = manager.searchBy("LED", "FRU");
+        Ticket[] expected = manager.findAll("LED", "FRU");
 
         Arrays.sort(expected);
 
@@ -122,7 +122,7 @@ class RepositoryTicketTest {
         manager.add(ticketSpb);
 
         Ticket[] actual = {ticketSpb, ticketMoscow};
-        Ticket[] expected = manager.searchBy("LED", "ZKD");
+        Ticket[] expected = manager.findAll("LED", "ZKD");
 
         Arrays.sort(expected);
 
@@ -138,7 +138,7 @@ class RepositoryTicketTest {
         manager.add(ticketSpb);
 
         Ticket[] actual = {ticketMoscow, ticketSpb};
-        Ticket[] expected = manager.searchBy("LED", "ZKD");
+        Ticket[] expected = manager.findAll("LED", "ZKD");
 
         assertArrayEquals(actual, expected);
 
@@ -151,7 +151,7 @@ class RepositoryTicketTest {
         manager.add(ticketMoscow);
 
         Ticket[] actual = {};
-        Ticket[] expected = manager.searchBy("AS", "ZKD");
+        Ticket[] expected = manager.findAll("AS", "ZKD");
 
         Arrays.sort(expected);
 

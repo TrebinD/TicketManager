@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RepositoryTicketTest {
@@ -19,10 +17,10 @@ class RepositoryTicketTest {
         manager.add(ticketSpb);
         manager.add(ticketBishkek);
 
-        Ticket[] actual = {ticketMoscow, ticketSpb, ticketBishkek};
-        Ticket[] expected = manager.find();
+        Ticket[] expected = {ticketSpb, ticketBishkek, ticketMoscow};
+        Ticket[] actual = manager.find();
 
-        assertArrayEquals(actual, expected);
+        assertArrayEquals(expected, actual);
 
     }
 
@@ -35,10 +33,10 @@ class RepositoryTicketTest {
 
         manager.remove(2);
 
-        Ticket[] actual = {ticketMoscow, ticketBishkek};
-        Ticket[] expected = manager.find();
+        Ticket[] expected = {ticketBishkek, ticketMoscow};
+        Ticket[] actual = manager.find();
 
-        assertArrayEquals(actual, expected);
+        assertArrayEquals(expected, actual);
 
     }
 
@@ -58,25 +56,10 @@ class RepositoryTicketTest {
         manager.add(ticketBishkek);
 
         manager.remove(9);
-        Ticket[] actual = {ticketMoscow, ticketSpb, ticketBishkek};
-        Ticket[] expected = manager.find();
+        Ticket[] expected = {ticketSpb, ticketBishkek, ticketMoscow};
+        Ticket[] actual = manager.find();
 
-        assertArrayEquals(actual, expected);
-
-    }
-
-    @Test
-    public void findAllProductNotSort() {
-
-        manager.add(ticketMoscow);
-        manager.add(ticketSpb);
-        manager.add(ticketBishkek);
-
-        Ticket[] actual = {ticketMoscow, ticketSpb, ticketBishkek};
-        Ticket[] expected = manager.find();
-
-
-        assertArrayEquals(actual, expected);
+        assertArrayEquals(expected, actual);
 
     }
 
@@ -88,12 +71,10 @@ class RepositoryTicketTest {
         manager.add(ticketSpb);
         manager.add(ticketBishkek);
 
-        Ticket[] actual = {ticketSpb, ticketBishkek, ticketMoscow};
-        Ticket[] expected = manager.find();
+        Ticket[] expected = {ticketSpb, ticketBishkek, ticketMoscow};
+        Ticket[] actual = manager.find();
 
-        Arrays.sort(expected);
-
-        assertArrayEquals(actual, expected);
+        assertArrayEquals(expected, actual);
 
     }
 
@@ -104,12 +85,10 @@ class RepositoryTicketTest {
         manager.add(ticketBishkek);
         manager.add(ticketMoscow);
 
-        Ticket[] actual = {ticketBishkek};
-        Ticket[] expected = manager.findAll("LED", "FRU");
+        Ticket[] expected = {ticketBishkek};
+        Ticket[] actual = manager.findBySort("LED", "FRU");
 
-        Arrays.sort(expected);
-
-        assertArrayEquals(actual, expected);
+        assertArrayEquals(expected, actual);
 
 
     }
@@ -121,28 +100,14 @@ class RepositoryTicketTest {
         manager.add(ticketMoscow);
         manager.add(ticketSpb);
 
-        Ticket[] actual = {ticketSpb, ticketMoscow};
-        Ticket[] expected = manager.findAll("LED", "ZKD");
+        Ticket[] expected = {ticketSpb, ticketMoscow};
+        Ticket[] actual = manager.findBySort("LED", "ZKD");
 
-        Arrays.sort(expected);
 
-        assertArrayEquals(actual, expected);
-
-    }
-
-    @Test
-    public void searchByAirportTwoResultNotSort() {
-
-        manager.add(ticketBishkek);
-        manager.add(ticketMoscow);
-        manager.add(ticketSpb);
-
-        Ticket[] actual = {ticketMoscow, ticketSpb};
-        Ticket[] expected = manager.findAll("LED", "ZKD");
-
-        assertArrayEquals(actual, expected);
+        assertArrayEquals(expected, actual);
 
     }
+
 
     @Test
     public void searchByAirportNullResult() {
@@ -150,12 +115,10 @@ class RepositoryTicketTest {
         manager.add(ticketBishkek);
         manager.add(ticketMoscow);
 
-        Ticket[] actual = {};
-        Ticket[] expected = manager.findAll("AS", "ZKD");
+        Ticket[] expected = {};
+        Ticket[] actual = manager.findBySort("AS", "ZKD");
 
-        Arrays.sort(expected);
-
-        assertArrayEquals(actual, expected);
+        assertArrayEquals(expected, actual);
 
     }
 }

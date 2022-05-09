@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class RepositoryTicket {
     Ticket[] repoTicket = new Ticket[0];
 
@@ -35,6 +37,7 @@ public class RepositoryTicket {
 
 
     public Ticket[] findAll() {
+        Arrays.sort(repoTicket);
         return repoTicket;
     }
 

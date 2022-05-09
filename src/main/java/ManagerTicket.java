@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ManagerTicket {
 
     public RepositoryTicket repository;
@@ -19,10 +21,10 @@ public class ManagerTicket {
         repository.removeTicket(id);
     }
 
-    public Ticket[] findAll(String from, String to) {
+    public Ticket[] findBySort(String from, String to) {
         Ticket[] result = new Ticket[0];
         for (Ticket product : repository.findAll()) {
-            if (matches(product, from) && matches2(product, to)) {
+            if (matchesFrom(product, from) && matchesTo(product, to)) {
                 int leghth = result.length + 1;
                 Ticket[] tmp = new Ticket[leghth];
                 for (int i = 0; i < result.length; i++) {
@@ -33,11 +35,12 @@ public class ManagerTicket {
                 result = tmp;
             }
         }
+        Arrays.sort(result);
         return result;
     }
 
 
-    public boolean matches(Ticket ticket, String search) {
+    public boolean matchesFrom(Ticket ticket, String search) {
         if (ticket.getFromAirport().contains(search)) {
             return true;
         } else {
@@ -45,7 +48,7 @@ public class ManagerTicket {
         }
     }
 
-    public boolean matches2(Ticket ticket, String search) {
+    public boolean matchesTo(Ticket ticket, String search) {
         if (ticket.getToAirport().contains(search)) {
             return true;
         } else {
